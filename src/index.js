@@ -5,7 +5,7 @@ var hogan = require('hogan.js');
 var request = require('request');
 
 console.log('Hogan ', hogan);
-console.log('Request ', require);
+console.log('Request ', request);
 
 function europassJSONReceived(json, response) {
   var jsonCV = JSON.parse(json);
