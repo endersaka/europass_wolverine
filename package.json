@@ -4,7 +4,7 @@
   "description": "Use Hogan to present Europass XML/JSON data.",
   "main": "src/index.js",
   "scripts": {
-    "test": "src/test.js"
+    "build-dist": "browserify ./src/index.js -o ./dist/bundle.js"
   },
   "keywords": [
     "Europass",
@@ -25,8 +25,5 @@
   "dependencies": {
     "hogan": "^1.0.2",
     "request": "^2.83.0"
-  },
-  "scripts": {
-    "build-dist": "browserify ./src/index.js -o ./dist/bundle.js"
   }
 }
