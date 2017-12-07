@@ -1,0 +1,24 @@
+{
+  "name": "europass_wolverine",
+  "version": "1.0.0",
+  "description": "Use Hogan to present Europass XML/JSON data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "keywords": [
+    "Europass",
+    "XML",
+    "Hogan",
+    "JSON",
+    "Template",
+    "Resume",
+    "Curriculum",
+    "Vitae"
+  ],
+  "author": "Marco Frisan, ender.saka@gmail.com",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "webpack": "^3.10.0"
+  }
+}
