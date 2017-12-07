@@ -1,3 +1,5 @@
+// Based on https://mikej.codes/post/watching-file-changes-npm-scripts
+
 const fs = require('fs');
 const spawn = require('child_process').spawn;
 
