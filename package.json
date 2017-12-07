@@ -2,9 +2,9 @@
   "name": "europass_wolverine",
   "version": "1.0.0",
   "description": "Use Hogan to present Europass XML/JSON data.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "test.js"
+    "test": "src/test.js"
   },
   "keywords": [
     "Europass",
@@ -16,9 +16,17 @@
     "Curriculum",
     "Vitae"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/endersaka/europass_wolverine.git"
+  },
   "author": "Marco Frisan, ender.saka@gmail.com",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "webpack": "^3.10.0"
+    "hogan": "^1.0.2",
+    "request": "^2.83.0"
+  },
+  "scripts": {
+    "build-dist": "browserify ./src/index.js -o ./dist/bundle.js"
   }
 }
