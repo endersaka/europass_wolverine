@@ -28,14 +28,14 @@ fs.watch('src', options, (eventType, file) => {
 
   if (scriptLabel) {
     // Spawn the process
-    const process = spawn('npm', ['run', script], {
+    const process = spawn('npm', ['run', scriptLabel], {
       stdio: 'inherit' // pipe output to the console
     });
 
     // Print something when the process completes
     process.on('close', code => {
       if (code === 1) {
-        console.error(`✖ "npm run ${script}" failed.`);
+        console.error(`✖ "npm run ${scriptLabel}" failed.`);
       } else {
         console.log('watching for changes...');
       }

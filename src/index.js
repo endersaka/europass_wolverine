@@ -1,19 +1,42 @@
 //import * as hogan from 'hogan';
 //import * as request from 'request';
 
-var hogan = require('hogan.js');
-var request = require('request');
+const hogan = require('hogan.js');
+const request = require('request');
 
 console.log('Hogan ', hogan);
 console.log('Request ', request);
 
+var data = null;
+
+var utility = {
+    escapeQuotes: function(string) {
+        return string.replace(/"/g, '\\"');
+    },
+    unescapeQuotes: function(string) {
+        return string.replace(/\\"/g, '"');
+    }
+};
+
 function europassJSONReceived(json, response) {
-  var jsonCV = JSON.parse(json);
-  console.log('jsonCV ', jsonCV);
+  console.log('JSON content: ', response.body);
+  console.log('response: ', response);
+
+  var logJSON = JSON.parse(json);
+  console.log('Object from JSON ', logJSON);
+
+  data = logJSON;//JSON.stringify(logJSON);//utility.unescapeQuotes(response.body);
+  //console.log('data: ', data);
+  var requestHTMLTemplate = request('http://localhost:8080/templates/html/basic.html', jsonCallback);
 }
 
 function htmlTemplateReceived(html, response) {
   console.log('html template ', html);
+
+  if (data) {
+    var template = hogan.compile(html);
+    document.querySelector('body').innerHTML = template.render(data);
+  }
 }
 
 var jsonCallback = function (error, response, content) {
@@ -22,9 +45,8 @@ var jsonCallback = function (error, response, content) {
     return null;
   } else {
     if (response && response.statusCode === 200) {
-      console.log('json: ', content);
-      console.log('response: ', response);
       var contentType = response.headers['content-type'].split(';')[0];
+
       switch (contentType) {
         case 'application/json':
           europassJSONReceived(content, response);
@@ -33,10 +55,8 @@ var jsonCallback = function (error, response, content) {
           htmlTemplateReceived(content, response);
           break;
         default:
-
+          htmlTemplateReceived(content, response);
       }
-
-
     } else {
       console.log('statusCode: ', response.statusCode);
     }

@@ -1,0 +1,44 @@
+
+{{#SkillsPassport.LearnerInfo}}
+{{#Identification.PersonName}}
+<h1>{{FirstName}} {{Surname}}</h1>
+{{/Identification.PersonName}}
+
+<h2>Esperienze Lavorative</h2>
+<ul class="work-experience">
+  {{#WorkExperience}}
+  <li>
+    <h3>{{#Position}}{{Label}}{{/Position}} - {{Employer.Name}}</h3>
+    <h4>{{#Period.From.Day}}{{Period.From.Day}} - {{/Period.From.Day}}{{#Period.From.Month}}{{Period.From.Month}} - {{/Period.From.Month}}{{Period.From.Year}} -&gt; {{^Period.Current}}{{#Period.To.Day}}{{Period.To.Day}} - {{/Period.To.Day}}{{Period.To.Month}} - {{Period.To.Year}}{{/Period.Current}}{{#Period.Current}}Present{{/Period.Current}}</h4>
+    <p>{{& Activities}}</p>
+  </li>
+  {{/WorkExperience}}
+</ul>
+
+<ul class="education">
+  {{#Education}}
+  <li>
+    <h3>{{Title}} - {{Organisation.Name}}</h3>
+    <h4>{{#Period.From.Day}}{{Period.From.Day}} - {{/Period.From.Day}}{{#Period.From.Month}}{{Period.From.Month}} - {{/Period.From.Month}}{{Period.From.Year}} -&gt; {{^Period.Current}}{{#Period.To.Day}}{{Period.To.Day}} - {{/Period.To.Day}}{{Period.To.Month}} - {{Period.To.Year}}{{/Period.Current}}{{#Period.Current}}Present{{/Period.Current}}</h4>
+    <p>{{& Activities}}</p>
+  </li>
+  {{/Education}}
+</ul>
+
+<ul class="skills">
+  <li>
+    <h2>Skill</h2>
+    <div>Livello</div>
+  </li>
+</ul>
+
+<ul class="cv-projects">
+  <li>
+    <h2>Titolo di studio</h2>
+    <h3>Istituto</h3>
+    <h4>Period</h4>
+    <p>Descrizione</p>
+  </li>
+</ul>
+
+{{/SkillsPassport.LearnerInfo}}
