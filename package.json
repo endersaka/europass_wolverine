@@ -4,7 +4,9 @@
   "description": "Use Hogan to present Europass XML/JSON data.",
   "main": "src/index.js",
   "scripts": {
-    "build-dist": "browserify ./src/index.js -o ./dist/bundle.js"
+    "build": "browserify ./src/index.js -o ./dist/bundle.js",
+    "live-server": "live-server --cors",
+    "watch": "node ./bin/watch.js"
   },
   "keywords": [
     "Europass",
@@ -23,11 +25,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "hogan": "^1.0.2",
+    "normalize.css": "^7.0.0",
     "request": "^2.83.0"
-  },
-  "scripts": {
-    "build": "browserify ./src/index.js -o ./dist/bundle.js",
-    "live-server": "live-server --cors",
-    "watch": "node ./bin/watch.js"
   }
 }

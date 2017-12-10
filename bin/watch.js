@@ -8,6 +8,8 @@ const options = {
 };
 
 fs.watch('src', options, (eventType, file) => {
+  console.log('found: ', file);
+
   // Get the extension of the file.
   const fileExtension = file.split('.').pop();
   let scriptLabel = null;
@@ -15,6 +17,7 @@ fs.watch('src', options, (eventType, file) => {
   switch (fileExtension) {
     case 'js':
     scriptLabel = 'build';
+    console.log('i will execute script labeled: ', scriptLabel);
     break;
     case 'less':
 
@@ -27,6 +30,8 @@ fs.watch('src', options, (eventType, file) => {
   }
 
   if (scriptLabel) {
+    console.log('spawning process for label: ', scriptLabel);
+
     // Spawn the process
     const process = spawn('npm', ['run', scriptLabel], {
       stdio: 'inherit' // pipe output to the console

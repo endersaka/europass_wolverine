@@ -25,9 +25,8 @@ function europassJSONReceived(json, response) {
   var logJSON = JSON.parse(json);
   console.log('Object from JSON ', logJSON);
 
-  data = logJSON;//JSON.stringify(logJSON);//utility.unescapeQuotes(response.body);
-  //console.log('data: ', data);
-  var requestHTMLTemplate = request('http://localhost:8080/templates/html/basic.html', jsonCallback);
+  data = logJSON;
+  var requestHTMLTemplate = request('http://localhost:8080/templates/html/ender.mustache', jsonCallback);
 }
 
 function htmlTemplateReceived(html, response) {

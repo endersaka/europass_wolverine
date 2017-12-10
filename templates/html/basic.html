@@ -1,8 +1,32 @@
-
 {{#SkillsPassport.LearnerInfo}}
-{{#Identification.PersonName}}
+{{#Identification}}
+  {{#PersonName}}
 <h1>{{FirstName}} {{Surname}}</h1>
-{{/Identification.PersonName}}
+  {{/PersonName}}
+  {{#ContactInfo}}
+    {{#Address}}
+      {{#Contact}}
+        {{AddressLine}}
+        {{PostalCode}}
+        {{Municipality}}
+        {{#Country}}
+          {{Code}}
+          {{Label}}
+        {{/Country}}
+      {{/Contact}}
+    {{/Address}}
+    {{#Email}}
+      {{Contact}}
+    {{/Email}}
+    {{#Telephone}}
+      {{Contact}}
+      {{#Use}}
+        {{Code}}
+        {{Label}}
+      {{/Use}}
+    {{/Telephone}}
+  {{/ContactInfo}}
+{{/Identification}}
 
 <h2>Esperienze Lavorative</h2>
 <ul class="work-experience">
