@@ -1,0 +1,20 @@
+<section class="skills-list">
+  <header class="section-header">
+    <div class="section-icon-wrapper"><i class="fas fa-certificate fa-lg"></i></div>
+    <h2 class="section-title">Skills</h2>
+  </header>
+
+  <section class="skills">
+    {{#skills}}
+    <div class="skill">
+      <div class="skill-name" style="width: 40%; color: #fff;">{{name}}</div>
+      <div class="skill-bar-wrapper" style="width: 60%;">
+        <div class="skill-bar" style="width: {{value}}%">
+          <div class="skill-bar-halo"></div>
+        </div>
+      </div>
+    </div>
+    {{/skills}}
+  </section>
+
+</section>

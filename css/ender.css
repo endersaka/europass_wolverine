@@ -6,16 +6,21 @@
   box-sizing: border-box;
 }
 
+h1 {
+  font-size: 32pt;
+  padding: 0;
+  margin: 0;
+}
+
 ul {
   padding: 16px 16px 16px 32px;
 }
 
 div.resume, div#resume {
-  /*font-size: 0;*/
   display: block;
   height: auto;
   width: auto;
-  margin: 80px 80px 120px 80px;
+  margin: 40px 40px 60px 40px;
 }
 
 div#content, div#header {
@@ -24,13 +29,36 @@ div#content, div#header {
   width: 100%;
 }
 
-header#contact-info {
+.identification {
   font-size: 12pt;
   display: block;
   width: 100%;
-  height: 200px;
+  height: auto;
   padding: 16px;
 }
+
+.person-name-wrapper, .contact-info {
+  position: relative;
+  display: inline-block;
+  /*padding: 0;*/
+}
+
+.person-name-wrapper {
+  margin-right: 10px;
+}
+
+.person-name {
+  position: relative;
+  top: -20px;
+}
+
+/*.contact-info {
+  float: right;
+}*/
+
+/*.contact-info > * {
+  position: relative;
+}*/
 
 .content {
   display: flex;
@@ -48,14 +76,14 @@ header#contact-info {
 }
 
 .side {
-  background-color: green;
+  background-color: #111;
   width: 34%;
 }
 
 .section-header {
   padding: 8px 16px 8px 16px;
   position: relative;
-  background-color: orange;
+  background-color: rgba(240, 220, 180, 0.5);
 }
 
 .section-icon-wrapper, .section-title {
@@ -74,7 +102,7 @@ header#contact-info {
   position: relative;
 }
 
-.work-experience {
+.work-experience, .education-item {
   padding: 16px 8px 16px 16px;
 }
 
@@ -83,13 +111,13 @@ header#contact-info {
  * La posizione lavorativa (job title);
  * Il periodo di occupazione;
  * L'azienda per cui ho lavorato; */
-.position, .date {
+.position, .title, .date {
   position: relative;
-  display: inline;
+  display: block;
 }
 
-.position {
-  font-size: 14pt;
+.position, .title {
+  font-size: 12pt;
   font-weight: bold;
   margin-right: 32px;
 }
@@ -102,9 +130,10 @@ header#contact-info {
 }
 
 .company {
+  font-size: 10pt;
   position: relative;
   right: -8px;
-  top: -8px;
+  top: -38px;
   padding: 8px 12px 8px 8px;
   float: right;
   background-color: rgba(240, 220, 180, 0.5);
@@ -116,6 +145,64 @@ header#contact-info {
   display: inline-block;
 }
 
-.work-experience-activities p {
+.company-icon {
+  margin-right: 4px;
+}
+
+.work-experience-activities p, .education-item-activities p,
+.work-experience-activities li, .education-item-activities li {
   padding: 8px;
+  font-size: 11pt;
+}
+
+.skills-list > .section-header {
+  color: white;
+}
+
+.skills {
+  padding: 16px;
+  width: 100%;
+}
+
+.skill {
+  font-size: 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.skill-name, .skill-bar-wrapper, .skill-bar {
+  display: inline-block;
+  position: relative;
+}
+
+.skill-name, .skill-bar-wrapper {
+  font-size: 10pt;
+  font-family: 'Play', sans-serif;
+  font-weight: bold;
+}
+
+.skill-name {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.skill-bar {
+  border-radius: 9px;
+  background-color: #d20;
+  height: 18px;
+}
+
+.skill-bar-halo {
+  position: relative;
+  display: block;
+  width: calc(100% - 8px);
+  height: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 1.0);
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }

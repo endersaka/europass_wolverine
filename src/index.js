@@ -3,11 +3,26 @@
 
 const hogan = require('hogan.js');
 const request = require('request');
+// console.log('Hogan ', hogan);
+// console.log('Request ', request);
 
-console.log('Hogan ', hogan);
-console.log('Request ', request);
+const domain = 'localhost';
+const port = '8080';
+const path = [
+  'CV-Europass-20170407-IT.xml',
+  'templates/html/ender.mustache',
+  'json/skills.json',
+  'templates/html/ender-skills.mustache'
+];
+
+var phase = -1;
 
 var data = null;
+var skills = null;
+
+function computeURL(domain, path, port = null) {
+  return 'http://' + domain + (port ? (':' + port) : '') + '/' + path;
+}
 
 var utility = {
     escapeQuotes: function(string) {
@@ -18,43 +33,62 @@ var utility = {
     }
 };
 
-function europassJSONReceived(json, response) {
-  console.log('JSON content: ', response.body);
-  console.log('response: ', response);
+function requestEuropassJSON(xml) {
+  let options = {
+    url: 'https://europass.cedefop.europa.eu/rest/v1/document/to/json',
+    headers: {
+      'Content-Type': 'application/xml'
+    },
+    body: xml
+  };
 
-  var logJSON = JSON.parse(json);
-  console.log('Object from JSON ', logJSON);
-
-  data = logJSON;
-  var requestHTMLTemplate = request('http://localhost:8080/templates/html/ender.mustache', jsonCallback);
+  let req = request.post(options, requestCallback);
 }
 
-function htmlTemplateReceived(html, response) {
-  console.log('html template ', html);
-
-  if (data) {
-    var template = hogan.compile(html);
-    document.querySelector('body').innerHTML = template.render(data);
-  }
-}
-
-var jsonCallback = function (error, response, content) {
+var requestCallback = function (error, response, body) {
   if (error) {
-    console.log('error ', error);
-    return null;
+    console.log('Error ', error);
   } else {
     if (response && response.statusCode === 200) {
-      var contentType = response.headers['content-type'].split(';')[0];
-
-      switch (contentType) {
-        case 'application/json':
-          europassJSONReceived(content, response);
+      switch (phase) {
+        case 0:
+          phase++;
+          requestEuropassJSON(body);
           break;
-        case 'application/xml':
-          htmlTemplateReceived(content, response);
+        case 1:
+          phase++;
+          data = JSON.parse(body);
+          console.log('Object from JSON ', data);
+          var requestHTMLTemplate = request(computeURL(domain, path[1], port), requestCallback);
+          break;
+        case 2:
+          phase++;
+          console.log('HTML Template: ', body);
+          if (data) {
+            let template = hogan.compile(body);
+            document.querySelector('body').innerHTML = template.render(data);
+          }
+          let skillsRequest = request(computeURL(domain, path[2], port), requestCallback);
+          break;
+        case 3:
+          phase++;
+          skills = JSON.parse(body);
+          var requestSkillsTemplate = request(computeURL(domain, path[3], port), requestCallback);
+          break;
+        case 4:
+          phase++;
+          let template = hogan.compile(body);
+          document.querySelector('.side').innerHTML = template.render(skills);
+
+          let skillsDOM = document.querySelectorAll('.skill');
+          for (var i = 0; i < skillsDOM.length; i++) {
+            let skillBar = skillsDOM.item(i).querySelector('.skill-bar');
+            let percentage = skills.skills[i].value * 100;
+            skillBar.width = percentage + '%';
+          }
           break;
         default:
-          htmlTemplateReceived(content, response);
+
       }
     } else {
       console.log('statusCode: ', response.statusCode);
@@ -62,29 +96,18 @@ var jsonCallback = function (error, response, content) {
   }
 }
 
-var requestEuropasXML = request(
-  'http://localhost:8080/CV-Europass-20170407-IT.xml',
-  function (error, response, body) {
-    if (error) {
-      console.log('error ', error);
-      return null;
-    } else {
-      if (response && response.statusCode === 200) {
-        //console.log('body: ', body);
+phase++;
+var europassRequest = request(computeURL(domain, path[0], port), requestCallback);
 
-        var jsonOptions = {
-          url: 'https://europass.cedefop.europa.eu/rest/v1/document/to/json',
-          headers: {
-            'Content-Type': 'application/xml'
-          },
-          body: body
-        };
-
-        var requestEuropassJSON = request.post(jsonOptions, jsonCallback);
-      } else {
-        console.log('statusCode: ', response.statusCode);
-      }
-    }
-
-  }
-);
+// Esempio di estrazione e verifica del mime-type
+// var contentType = response.headers['content-type'].split(';')[0];
+//
+// switch (contentType) {
+//   case 'application/json':
+//     europassJSONReceived(content, response);
+//     break;
+//   case 'application/xml':
+//     htmlTemplateReceived(content, response);
+//     break;
+//   default:
+//     htmlTemplateReceived(content, response);

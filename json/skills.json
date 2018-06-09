@@ -1,0 +1,118 @@
+{
+  "skills": [
+    {
+      "name": "JavaScript",
+      "id": "javascript",
+      "value": 97,
+      "relevance": 1.0
+    },
+    {
+      "name": "Web Sockets",
+      "id": "websockets",
+      "value": 75,
+      "relevance": 1.0
+    },
+    {
+      "name": "HTML 5",
+      "id": "html5",
+      "value": 100,
+      "relevance": 1.0
+    },
+    {
+      "name": "CSS",
+      "value": 75,
+      "relevance": 1.0
+    },
+    {
+      "name": "Unity",
+      "value": 75,
+      "relevance": 1.0
+    },
+    {
+      "name": "PHP",
+      "id": "php",
+      "value": 95,
+      "relevance": 1.0
+    },
+    {
+      "name": "C++",
+      "id": "cpp",
+      "value": 45,
+      "relevance": 1.0
+    },
+    {
+      "name": "C#",
+      "id": "csharp",
+      "value": 55,
+      "relevance": 1.0
+    },
+    {
+      "name": "C",
+      "id": "c",
+      "value": 85,
+      "relevance": 1.0
+    },
+    {
+      "name": "Objective-C",
+      "id": "objective-c",
+      "value": 100,
+      "relevance": 1.0
+    },
+    {
+      "name": "Java",
+      "id": "java",
+      "value": 100,
+      "relevance": 1.0
+    },
+    {
+      "name": "XML",
+      "value": 100,
+      "relevance": 1.0
+    },
+    {
+      "name": "XSLT",
+      "value": 45,
+      "relevance": 1.0
+    },
+    {
+      "name": "JSON",
+      "value": 100,
+      "relevance": 1.0
+    },
+    {
+      "name": "Python",
+      "value": 65,
+      "relevance": 1.0
+    },
+    {
+      "name": "Blender",
+      "value": 85,
+      "relevance": 1.0
+    },
+    {
+      "name": "Mac OS X",
+      "value": 100,
+      "relevance": 1.0
+    },
+    {
+      "name": "Linux",
+      "value": 75,
+      "relevance": 1.0
+    },
+    {
+      "name": "Windows",
+      "value": 80,
+      "relevance": 1.0
+    },
+    {
+      "name": "Illustrator",
+      "value": 100,
+      "relevance": 1.0
+    },
+    {
+      "name": "Photoshop",
+      "value": 100,
+      "relevance": 1.0
+    }
+  ]
+}

@@ -1,34 +1,35 @@
 {{#SkillsPassport.LearnerInfo}}
 <div id="resume">
+
   {{#Identification}}
-  <header id="contact-info">
+  <header class="identification">
+
     {{#PersonName}}
-    <h1 class="name">{{FirstName}} {{Surname}}</h1>
+    <div class="person-name-wrapper">
+      <h1 class="person-name">{{FirstName}} {{Surname}}</h1>
+    </div>
     {{/PersonName}}
-    <h2 class="label">Programmer</h2>
+
     {{#ContactInfo}}
-    {{#Address}}
-    {{#Contact}}
-    <span class="location">
+    <div class="contact-info">
+
+      {{#Address.Contact}}
       <span class="address">{{AddressLine}} </span>
       <span class="postalCode">{{PostalCode}}, </span>
       <span class="city">{{Municipality}}, </span>
       {{#Country}}
       <span class="region">{{Label}}</span>
-      <span class="countryCode">{{Code}}</span>
-      {{/Country}}
-    </span>
-    {{/Contact}}
-    {{/Address}}
-    <div id="contact">
+      <span class="countryCode">{{Code}}</span>{{/Country}}
+      {{/Address.Contact}}
+
       {{#WebsiteList}}
-      {{#Website}}
-      <div class="website">
-        <span class="fa fa-external-link"></span>
-        <a target="_blank" href="{{Contact}}">{{Contact}}</a>
-      </div>
-      {{/Website}}
-      {{/WebsiteList}}
+      <div class="website-list">
+        {{#Website}}
+        <div class="website">
+          <span class="fa fa-external-link"></span>
+          <a target="_blank" href="{{Contact}}">{{Contact}}</a>
+        </div>{{/Website}}
+      </div>{{/WebsiteList}}
 
       {{#Email}}
       <div class="email">
@@ -43,22 +44,25 @@
         <a href="tel:{{Contact}}">{{Contact}}</a>
       </div>
       {{/Telephone}}
-    </div>
 
-    {{#ContactMethodList}}
-    <div id="profiles">
-      {{#ContactMethod}}
-      <div class="item">
-        <div class="username">
-          <span class="fa fa-{{Use.Code}} {{Use.Code}} social"></span>
-          <span>{{Contact}}</span>
+      {{#ContactMethodList}}
+      <!-- This part is provided by Europass to contain contact methods that
+       are not supported yet by format -->
+      <div class="contact-method-list">
+        {{#ContactMethod}}
+        <div class="item">
+          <div class="username">
+            <span class="fa fa-{{Use.Code}} {{Use.Code}} social"></span>
+            <span>{{Contact}}</span>
+          </div>
         </div>
+        {{/ContactMethod}}
       </div>
-      {{/ContactMethod}}
-    </div>
-    {{/ContactMethodList}}
+      {{/ContactMethodList}}
 
+    </div><!-- End of .contact-info -->
     {{/ContactInfo}}
+
   </header>
   {{/Identification}}
 
@@ -68,7 +72,7 @@
       <section class="work-experience-list">
         <header class="section-header">
           <div class="section-icon-wrapper"><i class="fas fa-briefcase fa-lg"></i></div>
-          <h2 class="section-title">Work Experience</h2>
+          <h2 class="section-title">Esperienze Lavorative</h2>
         </header>
 
         {{#WorkExperience}}
@@ -77,9 +81,9 @@
             {{#Position}}
             <div class="position">{{Label}}</div>
             {{/Position}}
-            <i class="fas fa-calendar-alt"></i>
             {{#Period}}
             <div class="date">
+              <i class="fas fa-calendar-alt"></i>
               {{#From}}
               <span class="startDate">{{#Day}}{{Day}} / {{/Day}}{{#Month}}{{Month}} / {{/Month}}{{Year}}</span>
               {{/From}}
@@ -94,16 +98,12 @@
             {{#Employer}}
             <div class="company">
               <div class="company-icon">
-                <i class="fas fa-calendar-alt"></i>
+                <i class="fas fa-building"></i>
               </div>
               <div class="company-name">{{Name}}</div>
             </div>
             {{/Employer}}
           </header>
-
-          <span class="website">
-            <a target="_blank" href="https://piedpiper.com">https://piedpiper.com</a>
-          </span>
 
           <div class="work-experience-activities">
             <p>{{& Activities}}</p>
@@ -116,241 +116,60 @@
 
       <section class="education-list">
         <header class="section-header">
-          <h2 class="section-title">Education</h2>
+          <div class="section-icon-wrapper"><i class="fas fa-graduation-cap fa-lg"></i></div>
+          <h2 class="section-title">Istruzione</h2>
         </header>
 
-        <section class="education-item">
-          <header>
-            <div class="header-left">
-              <div class="studyType">
-                Bachelor
-              </div>
-              <div class="area">
-                Information Technology
-              </div>
-              <div class="institution">
-                University of Oklahoma
-              </div>
-            </div>
+        {{#Education}}
+        <article class="education-item">
+          <header class="education-item-header">
+            {{#Title}}
+            <div class="title">{{Title}}</div>
+            {{/Title}}
+            {{#Period}}
             <div class="date">
-              <span class="startDate">
-                2011
-              </span>
-              <span class="endDate">
-                - 2014
-              </span>
+              <i class="fas fa-calendar-alt"></i>
+              {{#From}}
+              <span class="startDate">{{#Day}}{{Day}} / {{/Day}}{{#Month}}{{Month}} / {{/Month}}{{Year}}</span>
+              {{/From}}
+              {{#To}}
+              <span class="endDate"> -> {{#Day}}{{Day}} / {{/Day}}{{#Month}}{{Month}} / {{/Month}}{{Year}}</span>
+              {{/To}}
+              {{#Current}}
+              <span class="endDate"> -> present</span>
+              {{/Current}}
             </div>
+            {{/Period}}
+            {{#Organisation}}
+            <div class="company">
+              <div class="company-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <div class="company-name">{{Name}}</div>
+            </div>
+            {{/Organisation}}
           </header>
 
-          <ul class="courses">
-            <li>DB1101 - Basic SQL</li>
-            <li>CS2011 - Java Introduction</li>
-          </ul>
-          <div class="item">
-            <div class="gpa">
-              <strong> Grade:</strong> <span>4.0</span>
-            </div>
+          <div class="education-item-activities">
+            <p>{{& Activities}}</p>
           </div>
-        </section><!-- End of .education-item -->
+        </article><!-- End of .education-item -->
+        {{/Education}}
 
       </section><!-- End of .education-list -->
     </div><!-- End of .main -->
 
     <!-- Skills -->
     <div class="side">
-      <section class="section margin1">
-        <header>
-          <h2 class="section-title">Skills</h2>
-        </header>
-        <section id="skills">
-          <div class="item">
-            <h3 class="name">
-              Web Development
-            </h3>
-            <div class="level master">
-              <em>Master</em>
-              <div class="bar"></div>
-            </div>
-            <ul class="keywords">
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>Javascript</li>
-            </ul>
-          </div>
-          <div class="item">
-            <h3 class="name">
-              Compression
-            </h3>
-            <div class="level master">
-              <em>Master</em>
-              <div class="bar"></div>
-            </div>
-            <ul class="keywords">
-              <li>Mpeg</li>
-              <li>MP4</li>
-              <li>GIF</li>
-            </ul>
-          </div>
-        </section>
-      </section>
     </div>
   </div>
 
 
-  <section class="section main-summary">
+  <!-- <section class="section main-summary">
     <section>
       <div><p>Richard hails from Tulsa. He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinal!) Before starting Pied Piper, he worked for Hooli as a part time software developer. While his work focuses on applied information theory, mostly optimizing lossless compression schema of both the length-limited and adaptive variants, his non-work interests range widely, everything from quantum computing to chaos theory. He could tell you about it, but THAT would NOT be a “length-limited” conversation!</p></div>
     </section>
-  </section>
-
-
-  <section class="section">
-    <header>
-      <h2 class="section-title">Volunteer</h2>
-    </header>
-    <section id="volunteer">
-      <section class="volunteer-item">
-        <label for="volunteer-item-0"></label>
-        <header>
-          <div class="header-left">
-            <div class="position">
-              Teacher
-            </div>
-            <div class="organization">
-              CoderDojo
-            </div>
-          </div>
-          <div class="date">
-            <span class="startDate">
-              January 2012
-            </span>
-            <span class="endDate">
-              - January 2013
-            </span>
-          </div>
-        </header>
-        <div class="website">
-          <a target="_blank" href="https://coderdojo.com/">https://coderdojo.com/</a>
-        </div>
-        <div class="item">
-          <div class="summary">
-            <p></p><p>Global movement of free coding clubs for young people.</p><p></p>
-          </div>
-          <ul class="highlights">
-            <li><p>Awarded 'Teacher of the Month'</p></li>
-          </ul>
-        </div>
-      </section>
-    </section>
-  </section>
-
-  <section class="section">
-    <header>
-      <h2 class="section-title">Awards</h2>
-    </header>
-    <section id="awards">
-      <section class="award-item">
-        <label for="award-item-0"></label>
-        <header>
-          <div class="header-left">
-            <div class="title">
-              Digital Compression Pioneer Award
-            </div>
-            <div class="awarder">
-              Techcrunch
-            </div>
-          </div>
-          <div class="date">
-            2014
-          </div>
-        </header>
-        <div class="item">
-          <div class="summary">
-            <p></p><p>There is no spoon.</p><p></p>
-          </div>
-        </div>
-      </section>
-    </section>
-  </section>
-  <section class="section">
-    <header>
-      <h2 class="section-title">Publications</h2>
-    </header>
-    <section id="publications">
-      <section class="publication-item">
-        <label for="publication-item-0"></label>
-        <header>
-          <div class="header-left">
-            <span class="name">
-              <span class="website">
-                <a target="_blank" href="https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Video compression for 3d media</a>
-              </span>
-            </span>
-            <span class="publisher">
-              in Hooli
-            </span>
-          </div>
-          <span class="date">
-            1 October 2014
-          </span>
-        </header>
-        <div class="item">
-          <div class="summary">
-            <p></p><p>Innovative middle-out compression algorithm that changes the way we store data.</p><p></p>
-          </div>
-        </div>
-      </section>
-    </section>
-  </section>
-  <section class="section margin1">
-    <header>
-      <h2 class="section-title">Languages</h2>
-    </header>
-    <section id="languages">
-      <div class="display">
-        <h3 class="language">
-          English
-        </h3>
-        <div class="item">
-          <div class="level fluency native speaker">
-            <em>Native speaker</em>
-            <div class="bar"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
-  <section class="section margin1">
-    <header>
-      <h2 class="section-title">Interests</h2>
-    </header>
-    <section id="interests">
-      <div class="item">
-        <h3 class="name">
-          Wildlife
-        </h3>
-        <ul class="keywords">
-          <li>Ferrets</li>
-          <li>Unicorns</li>
-        </ul>
-      </div>
-    </section>
-  </section>
-  <section class="section">
-    <header>
-      <h2 class="section-title">References</h2>
-    </header>
-    <section id="references">
-      <div class="item">
-        <blockquote class="reference">
-          “ It is my pleasure to recommend Richard, his performance working as a consultant for Main St. Company proved that he will be a valuable addition to any company. ”
-        </blockquote>
-        <div class="name">
-          Erlich Bachman
-        </div>
-      </div>
-    </section>
-  </section>
+  </section> -->
 
 </div>
 {{/SkillsPassport.LearnerInfo}}
