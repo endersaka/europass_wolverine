@@ -37,7 +37,8 @@ function requestEuropassJSON(xml) {
   let options = {
     url: 'https://europass.cedefop.europa.eu/rest/v1/document/to/json',
     headers: {
-      'Content-Type': 'application/xml'
+      'Content-Type': 'application/xml',
+	  'Accept-Language': 'it'
     },
     body: xml
   };
